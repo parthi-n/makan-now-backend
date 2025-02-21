@@ -33,15 +33,6 @@ const get = async (req, res) => {
 	}
 };
 
-const create = async (req, res) => {
-	try {
-		await userServices.createUser(req.body);
-		res.json({ message: `User created: ${user.username}` });
-	} catch (error) {
-		console.error(error);
-		res.status(404).json({ err: error.message });
-	}
-};
 
 
 module.exports = { index, get };
