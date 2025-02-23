@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const userServices = require("../services/userServices");
-const saltRounds = 12;
 
 const signUp = async (req, res) => {
 	try {
