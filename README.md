@@ -319,8 +319,8 @@ This endpoint will update the specified shop.
 
 #### Body
 
-- `shopName` (string, required): The name of the Shop.
-- `address` (string, required): The address of the shop.
+- `shopName` (string): The updated name of the Shop.
+- `address` (string): The updated address of the shop.
 
 ```json
 {
@@ -342,5 +342,155 @@ Response Body:
 	"_id": "67bebcfc83e4c11073870ad6",
 	"menu": [],
 	"__v": 0
+}
+```
+
+---
+
+## Endpoint: `GET /shops/:shopId/menu`
+
+### Description
+
+This endpoint will provide an array of all the menu items from the specified shop.
+
+### Method
+
+`GET`
+
+### Endpoint URL
+
+`/shops/:shopId/menu`
+
+### Request
+
+#### Headers
+
+```json
+{
+	"Content-Type": "application/json"
+}
+```
+
+#### Response
+
+- Success Response - Status Code: `200 OK`
+
+Response Body:
+
+```json
+[
+	{
+		"itemName": "Dish Name",
+		"price": 99.99,
+		"description": "Item description",
+		"image": "https://res.cloudinary.com/dxiknrak0/image/upload/v1740552401/set_kqnbkc.jpg",
+		"itemType": "Set Meal",
+		"_id": "67beb95383e4c11073870a9e"
+	}
+]
+```
+
+---
+
+## Endpoint: `POST /shops/:shopId/menu`
+
+### Description
+
+This endpoint will allow user to create a new menu item in the specified shop.
+
+### Method
+
+`POST`
+
+### Endpoint URL
+
+`/shops/:shopId/menu`
+
+### Request
+
+#### Headers
+
+```json
+{
+	"Content-Type": "application/json"
+}
+```
+
+#### Body
+
+- `itemName` (string): The name of the item.
+- `price` (number): The price of the item.
+- `image` (string): The image URL.
+- `itemType` (string): The item type - ['Set Meal', 'Ala Carte', 'Add On'].
+
+```json
+{
+	"itemName": "Dish Name",
+	"price": 99.99,
+	"description": "Item description",
+	"image": "https://res.cloudinary.com/dxiknrak0/image/upload/v1740552401/set_kqnbkc.jpg",		"itemType": "Set Meal",
+    "_id": "67beb95383e4c11073870a9e"
+ },
+```
+
+#### Response
+
+- Success Response - Status Code: `201 OK`
+
+Response Body:
+
+```json
+{
+	"itemName": "Dish Name",
+	"price": 99.99,
+	"description": "Item description",
+	"image": "https://res.cloudinary.com/dxiknrak0/image/upload/v1740552401/set_kqnbkc.jpg",
+	"itemType": "Set Meal",
+	"_id": "67beb95383e4c11073870a9e"
+}
+```
+
+---
+
+## Endpoint: `DELETE /shops/:shopId/menu/:itemId`
+
+### Description
+
+This endpoint will allow user to delete a specified menu item in the specified shop.
+
+### Method
+
+`DELETE`
+
+### Endpoint URL
+
+`/shops/:shopId/menu/:itemId`
+
+### Request
+
+#### Headers
+
+```json
+{
+	"Content-Type": "application/json"
+}
+```
+
+#### Response
+
+- Success Response - Status Code: `201 OK`
+
+Response Body:
+
+```json
+{
+	"deleted": {
+		"itemName": "Dish Name",
+		"price": 99.99,
+		"description": "Item description",
+		"image": "https://res.cloudinary.com/dxiknrak0/image/upload/v1740552401/set_kqnbkc.jpg",
+		"itemType": "Set Meal",
+		"_id": "67beb95383e4c11073870a9e"
+	}
 }
 ```

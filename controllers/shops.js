@@ -115,7 +115,7 @@ const deleteMenuItem = async (req, res) => {
 		const menuItem = await shop.menu.id(req.params.menuId);
 		shop.menu.remove({ _id: req.params.menuId });
 		await shop.save();
-		res.status(200).json(shop.menu);
+		res.status(200).json({ deleted: menuItem });
 	} catch (error) {
 		res.status(500).json({ err: err.message });
 	}
