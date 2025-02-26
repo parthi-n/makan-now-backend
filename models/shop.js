@@ -9,16 +9,25 @@ const menuSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
-	// description: {
-	// 	type: String,
-	// 	required: true,
-	// },
+	description: {
+		type: String,
+	},
+	image: {
+		type: String,
+	},
+	itemType: {
+		type: String,
+		enum: ['Set Meal', 'Ala Carte', 'Add On'],
+	}
 });
 
 const shopSchema = new mongoose.Schema({
 	shopName: {
 		type: String,
 		required: true,
+	},
+	address: {
+		type: String,
 	},
 
 	menu: [menuSchema],

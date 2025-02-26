@@ -57,16 +57,41 @@ const remove = async (req, res) => {
 	}
 };
 
-// Add Menu item to Specific Shop
+// All Menu item from a Specific Shop
+const allMenuItem = async (req, res) => {
+	try {
+		const shop = await Shop.findById(req.params.shopId);
+
+		if (!shop) {
+			return res.status(404).json({ err: "Shop not found." });
+		}
+
+		const menuItems = shop.menu;
+
+		res.status(200).json(menuItems);
+	} catch (error) {
+		res.status(500).json({ err: err.message });
+	}
+};
+
+// Add Menu item/items to Specific Shop
 const addMenuItem = async (req, res) => {
 	try {
 		const shop = await Shop.findById(req.params.shopId);
-		shop.menu.push(req.body);
-		await shop.save();
-		const newMenuItem = shop.menu[shop.menu.length - 1];
-		res.status(201).json(newMenuItem);
+
+		if (Array.isArray(req.body) && req.body.length > 0) {
+			shop.menu.push(...req.body);
+			await shop.save();
+			res.status(201).json(shop.menu.slice(-req.body.length));
+		} else if (req.body && typeof req.body === "object") {
+			shop.menu.push(req.body);
+			await shop.save();
+			res.status(201).json(req.body);
+		} else {
+			res.status(400).json({ err: "Request body must be an object or an array of menu items" });
+		}
 	} catch (error) {
-		res.status(500).json({ err: err.message });
+		res.status(500).json({ err: error.message });
 	}
 };
 
@@ -75,8 +100,8 @@ const updateMenuItem = async (req, res) => {
 	try {
 		const shop = await Shop.findById(req.params.shopId);
 		const menuItem = await shop.menu.id(req.params.menuId);
-        console.log(shop)
-        Object.assign(menuItem, req.body);
+		console.log(shop);
+		Object.assign(menuItem, req.body);
 		await shop.save();
 		res.status(200).json(menuItem);
 	} catch (error) {
@@ -84,17 +109,16 @@ const updateMenuItem = async (req, res) => {
 	}
 };
 
-const deleteMenuItem = async (req,res) => {
-    try {
-        const shop = await Shop.findById(req.params.shopId);
+const deleteMenuItem = async (req, res) => {
+	try {
+		const shop = await Shop.findById(req.params.shopId);
 		const menuItem = await shop.menu.id(req.params.menuId);
-        shop.menu.remove({ _id: req.params.menuId });
-        await shop.save();
+		shop.menu.remove({ _id: req.params.menuId });
+		await shop.save();
 		res.status(200).json(shop.menu);
-    } catch (error) {
-        res.status(500).json({ err: err.message });
-    }
-}
+	} catch (error) {
+		res.status(500).json({ err: err.message });
+	}
+};
 
-
-module.exports = { index, get, create, update, remove, addMenuItem, updateMenuItem, deleteMenuItem };
+module.exports = { index, get, create, update, remove, allMenuItem, addMenuItem, updateMenuItem, deleteMenuItem };
