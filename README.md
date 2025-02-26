@@ -25,6 +25,7 @@ Creates a new user account. This endpoint registers a new user with their provid
 ### Request
 
 #### Headers
+
 ```json
 {
 	"Content-Type": "application/json"
@@ -32,6 +33,7 @@ Creates a new user account. This endpoint registers a new user with their provid
 ```
 
 #### Body
+
 - `username` (string, required): The username of the user.
 - `password` (string, required): The password associated with the user's account.
 
@@ -43,9 +45,11 @@ Creates a new user account. This endpoint registers a new user with their provid
 ```
 
 #### Response
+
 - Success Response - Status Code: `201 OK`
 
 Response Body:
+
 ```json
 {
 	"token": "<-hashed string->"
@@ -71,6 +75,7 @@ This endpoint allows a user to log in by providing their email and password. On 
 ### Request
 
 #### Headers
+
 ```json
 {
 	"Content-Type": "application/json"
@@ -78,6 +83,7 @@ This endpoint allows a user to log in by providing their email and password. On 
 ```
 
 #### Body
+
 - `username` (string, required): The username of the user.
 - `password` (string, required): The password associated with the user's account.
 
@@ -89,9 +95,11 @@ This endpoint allows a user to log in by providing their email and password. On 
 ```
 
 #### Response
+
 - Success Response - Status Code: `200 OK`
 
 Response Body:
+
 ```json
 {
 	"token": "<-hashed string->"
@@ -117,6 +125,7 @@ This endpoint will provide all full list of all the shops .
 ### Request
 
 #### Headers
+
 ```json
 {
 	"Content-Type": "application/json"
@@ -124,9 +133,11 @@ This endpoint will provide all full list of all the shops .
 ```
 
 #### Response
+
 - Success Response - Status Code: `200 OK`
 
 Response Body:
+
 ```json
 [
 	{
@@ -159,6 +170,7 @@ This endpoint will allow users to create a shop profile .
 ### Request
 
 #### Headers
+
 ```json
 {
 	"Content-Type": "application/json"
@@ -166,6 +178,7 @@ This endpoint will allow users to create a shop profile .
 ```
 
 #### Body
+
 - `shopName` (string, required): The name of the Shop.
 - `address` (string, required): The address of the shop.
 
@@ -177,9 +190,151 @@ This endpoint will allow users to create a shop profile .
 ```
 
 #### Response
+
 - Success Response - Status Code: `201 OK`
 
 Response Body:
+
+```json
+{
+	"shopName": "Shop Name",
+	"address": "Shop address",
+	"_id": "67bebcfc83e4c11073870ad6",
+	"menu": [],
+	"__v": 0
+}
+```
+
+---
+
+## Endpoint: `GET /shops/:shopId`
+
+### Description
+
+This endpoint will provide details of a specific shop.
+
+### Method
+
+`GET`
+
+### Endpoint URL
+
+`/shops/:shopId`
+
+### Request
+
+#### Headers
+
+```json
+{
+	"Content-Type": "application/json"
+}
+```
+
+#### Response
+
+- Success Response - Status Code: `200 OK`
+
+Response Body:
+
+```json
+{
+	"shopName": "Shop Name",
+	"address": "Shop address",
+	"_id": "67bebcfc83e4c11073870ad6",
+	"menu": [],
+	"__v": 0
+}
+```
+
+---
+
+## Endpoint: `DELETE /shops/:shopId`
+
+### Description
+
+This endpoint will delete the specified shop.
+
+### Method
+
+`DELETE`
+
+### Endpoint URL
+
+`/shops/:shopId`
+
+### Request
+
+#### Headers
+
+```json
+{
+	"Content-Type": "application/json"
+}
+```
+
+#### Response
+
+- Success Response - Status Code: `200 OK`
+
+Response Body:
+
+```json
+{
+	"deleted": {
+		"shopName": "Shop Name",
+		"address": "Shop address",
+		"_id": "67bebcfc83e4c11073870ad6",
+		"menu": [],
+		"__v": 0
+	}
+}
+```
+
+---
+
+## Endpoint: `PUT /shops/:shopId`
+
+### Description
+
+This endpoint will update the specified shop.
+
+### Method
+
+`PUT`
+
+### Endpoint URL
+
+`/shops/:shopId`
+
+### Request
+
+#### Headers
+
+```json
+{
+	"Content-Type": "application/json"
+}
+```
+
+#### Body
+
+- `shopName` (string, required): The name of the Shop.
+- `address` (string, required): The address of the shop.
+
+```json
+{
+	"shopName": "Updated Name",
+	"address": "Updated address"
+}
+```
+
+#### Response
+
+- Success Response - Status Code: `200 OK`
+
+Response Body:
+
 ```json
 {
 	"shopName": "Shop Name",

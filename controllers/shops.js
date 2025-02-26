@@ -51,7 +51,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
 	try {
 		const deletedShop = await Shop.findByIdAndDelete(req.params.shopId);
-		res.status(200).json(deletedShop);
+		res.status(200).json({ deleted: deletedShop });
 	} catch (error) {
 		res.status(500).json({ err: err.message });
 	}
