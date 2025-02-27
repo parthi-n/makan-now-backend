@@ -15,7 +15,7 @@ const testJwtRouter = require("./controllers/test-jwt");
 const authRouter = require("./routes/auth");
 const usersRouter = require("./routes/users");
 const shopsRouter = require("./routes/shops");
-const queueNumRouter = require("./controllers/queue-num")
+const queueNumRouter = require("./routes/queueNum")
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI);
