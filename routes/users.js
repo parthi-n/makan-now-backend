@@ -5,5 +5,6 @@ const usersCtrl = require("../controllers/users");
 
 router.get("/", verifyToken, usersCtrl.index);
 router.get("/:userId", usersCtrl.get);
+router.put("/:userId", usersCtrl.addFoodOrders);
 
 module.exports = router;
