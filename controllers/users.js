@@ -31,6 +31,8 @@ const get = async (req, res) => {
 const addFoodOrders = async (req, res) => {
 	try {
 		if (req.user._id !== req.params.userId) {
+			console.log(req.user._id)
+			console.log(req.params.userId)
 			return res.status(403).json({ err: "Unauthorized" });
 		}
 
