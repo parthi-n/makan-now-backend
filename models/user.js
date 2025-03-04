@@ -1,15 +1,23 @@
 const mongoose = require('mongoose');
 
+const ordersSchema = new mongoose.Schema({
+	orders: {
+		type: Array,
+		required: true,
+	},
+	totalPrice: {
+		type: Number,
+	},
+	queueNumber: {
+		type: Number,
+	},
+	status: {
+		type: String,
+		enum: ['Completed', 'Ready for Collection', 'Preparing'],
+	}
+});
+
 const userSchema = new mongoose.Schema({
-	// name: {
-	// 	type: String,
-	// 	required: true,
-	// },
-	// email: {
-	// 	type: String,
-	// 	required: true,
-	// 	unique: true,
-	// },
 	username: {
 		type: String,
 		required: true,
@@ -19,6 +27,7 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	ordersList: [ordersSchema],
 });
 
 userSchema.set('toJSON', {
