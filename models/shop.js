@@ -17,8 +17,8 @@ const menuSchema = new mongoose.Schema({
 	},
 	itemType: {
 		type: String,
-		enum: ['Set Meal', 'Ala Carte', 'Add On'],
-	}
+		enum: ["Set Meal", "Ala Carte", "Add On"],
+	},
 });
 
 const shopSchema = new mongoose.Schema({
@@ -31,6 +31,9 @@ const shopSchema = new mongoose.Schema({
 	},
 
 	menu: [menuSchema],
+	orderNumber: {
+		type: Number,
+	},
 });
 
 const Shop = mongoose.model("Shop", shopSchema);

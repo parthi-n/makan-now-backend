@@ -26,4 +26,6 @@ const getQueueNum = (req, res) => {
 	res.json({ queueNum });
 };
 
+
 module.exports = { getQueueNum };
+

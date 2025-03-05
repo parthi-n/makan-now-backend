@@ -5,4 +5,5 @@ const queueNum = require("../controllers/queueNum");
 
 router.get("/", queueNum.getQueueNum)
 
+
 module.exports = router;
